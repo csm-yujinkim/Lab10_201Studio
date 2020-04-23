@@ -1,0 +1,179 @@
+% LaTeX Article Template - customizing page format
+%
+% LaTeX document uses 10-point fonts by default.  To use
+% 11-point or 12-point fonts, use \documentclass[11pt]{article}
+% or \documentclass[12pt]{article}.
+\documentclass{article}
+
+% Set left margin - The default is 1 inch, so the following 
+% command sets a 1.25-inch left margin.
+\setlength{\oddsidemargin}{0.25in}
+
+% Set width of the text - What is left will be the right margin.
+% In this case, right margin is 8.5in - 1.25in - 6in = 1.25in.
+\setlength{\textwidth}{6in}
+
+% Set top margin - The default is 1 inch, so the following 
+% command sets a 0.75-inch top margin.
+\setlength{\topmargin}{-0.25in}
+
+% Set height of the text - What is left will be the bottom margin.
+% In this case, bottom margin is 11in - 0.75in - 9.5in = 0.75in
+\setlength{\textheight}{8in}
+\usepackage{fancyhdr}
+\usepackage{float}
+\setlength{\parskip}{5pt} 
+\pagestyle{fancyplain}
+
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{verbatim}
+% Set the beginning of a LaTeX document
+\begin{document}
+
+\lhead{MATH 201}
+\rhead{R Lab \#10\\ Due Sunday, April 26th, at midnight}
+
+\bf \begin{center} \Large Hypothesis Testing with Categorical Data \end{center} \rm \normalsize 
+
+
+
+Objectives:
+ 
+\begin{itemize}
+  \item Learn the R code that runs $\chi^2$ tests for Goodness of Fit, Homogeneity, Independence 
+  \item Collect your own data to run the above tests
+  \item Read datasets into R and draw inference based on hypothesis tests 
+  \end{itemize} 
+  
+\vspace{.4in}
+\bf \large Part 1: Collect your own sample for Goodness of Fit Test \rm \normalsize 
+
+You will obtain a die that has at least 4 sides (a typical 6-sided die is fine). You will need to identify how many faces the die has and then roll the die 50 times. Tally your results.  
+
+\begin{comment}
+> xxx = sample({1:6}, size = 50, replace = TRUE)
+> xxx
+ [1] 6 1 2 2 1 5 5 1 5 3 6 5 6 6 4 1 1 5 2 2 1 3 5 4 4 2 2 6 1 4 5 4 5 5 6 5 6 6 6 1 6 6 5 5 3 1
+[47] 6 1 4 3
+
+> chisq.test(xxx)
+
+	Chi-squared test for given probabilities
+
+data:  xxx
+X-squared = 46.316, df = 49, p-value = 0.5826
+
+Warning message:
+In chisq.test(xxx) : Chi-squared approximation may be incorrect
+\end{comment}
+
+\begin{itemize}
+  \item Create a vector of your results, $x$. Remember that $x$ is the counts of your outcomes, rather than the outcomes themselves.
+  \item Run a hypothesis test that the die is fair using $chisq.test(x)$.
+  \item Save the $\chi^2$ test statistic and p-value for the worksheet.
+  \end{itemize} 
+
+
+%\bf \large Part 2: $\chi^2$ test for homogeneity of pig tossing \rm \normalsize 
+
+%You have been assigned 2 pigs, which you will flip 25 times (for a total of 50 outcomes). You will tally all of the pig postures (feet, dot up, dot down, back, snout). Then, combine your results with another neighbors results (for a total of 100 outcomes).   
+
+%\begin{itemize}
+ % \item Create a vector $z$ of your 100 results.
+  %\item Ask TWO of your other neighbors for their results, and create another vector $y$ of those 100 results. NOTE: you need to make sure you list the postures in the same order as you did your vector $z$.
+ % \item Use the code \it M = rbind(z,y) \rm to make a matrix of all the results.  
+  %\item Using the code $chisq.test(M)$ run a  $\chi^2$ test for homogeneity.
+  %\item Save the $\chi^2$ test statistic, p-value, and all expected counts for the test to report in the worksheet. 
+%\end{itemize} 
+
+\vspace{.4in}
+
+
+  
+
+\bf \large Part 2: $\chi^2$ test for independence   \rm  \normalsize
+
+You will need to ask a group of people two questions, each of which is categorical in nature. In this age of social distancing, get creative! You can put out a Facebook poll, text your friends, or ask on the Discussion Boards. You plan to test whether the responses to these questions are dependent on one another. You should try to ask at least 20 people to get adequate data for each cell of your table. \\ \\
+TIPS FOR COLLECTING YOUR DATA: You should draw your two-way contingency table in advance. When you ask each person both questions, their ``response'' will be recorded in one of the cells of this table. In addition, it's not a good idea to ask questions that have too many categories. Ideally, no more than 4 per variable.
+
+\begin{itemize}
+  \item Use the code \it M = rbind(z,y) \rm to make a matrix of all the results (assuming your 2 sets of data are named $z$ and $y$).
+  \item Using the code $chisq.test(M)$ run a  $\chi^2$ test for independence.
+  \item Save the $\chi^2$ test statistic, p-value, and all expected counts for the test to report in the worksheet.
+    \end{itemize} 
+
+\pagebreak
+
+\bf \large Part 3: Categorical Data \rm  \normalsize
+
+
+The table below shows a breakdown of 762 people for hair color and eye color. 
+
+\begin{table}[H] \begin{center}
+\begin{tabular}{|c|c|c|c|c|c|} \hline
+ & Fair & Red & Medium & Dark & Black\\ \hline
+Blue & 69 & 28 & 68 & 51 & 6\\ \hline
+Green & 69 & 38 & 55 & 37 & 0\\ \hline
+Brown & 90 & 47 & 94 & 94 & 16\\ \hline
+\end{tabular} \end{center}
+\end{table}
+
+
+\begin{itemize}
+  \item Enter the data into R.
+  \item Run a $\chi^2$ test. 
+  \item Save the $\chi^2$ test statistic and p-value to report in the worksheet.
+\end{itemize} 
+\vspace{.5in}  
+
+\pagebreak
+
+
+\bf \large Worksheet \rm  \normalsize
+
+
+\underline{Questions from Part 1}
+\begin{enumerate}
+\item State the appropriate set of hypotheses for this test. Also state how many faces your die had. \vspace{1in}
+\item What is the p-value from the $\chi^2$ table? What is the p-value from R? \vspace{.5in}
+\item Can you conclude the die is unfair? Explain. \vspace{1in}
+\item Were all of your assumptions for the validity of this test met? Explain. \vspace{.5in}
+\end{enumerate} 
+
+
+%\underline{Questions from Part 2}
+%\begin{enumerate}
+ % \item State the set of hypotheses for this test. \vspace{.75in}
+ % \item Write a table of the expected values for your test. \vspace{1.5in}
+ % \item Report the p-value for your test. \vspace{.5in}
+ % \item What can you conclude about the the different techniques of pig tossing? Explain. \vspace{1in} 
+ %  \item Were all of your assumptions for the validity of this test met? Explain. \vspace{.5in}
+ % \end{enumerate} 
+
+
+
+
+\underline{Questions from Part 2}
+\begin{enumerate}
+  \item Write down both of the questions that you asked your fellow classmates. \vspace{2in}
+  \item Realistically, do you believe that these two variables could be related? Explain. \vspace{1in}
+  \item State the set of hypotheses for this test. \vspace{.75in}
+\item State your p-value for the test. \vspace{.5in}
+\item What can you conclude regarding the dependence of your variables? \vspace{1in}
+\item Were all of your assumptions for the validity of this test met? Explain. \vspace{.5in}
+\item If you were to choose ONE of the questions you asked your classmates, how would this translate into a $\chi^2$ goodness of fit test? Explain by writing an appropriate set of null and alternate hypotheses. \vspace{.75in} 
+\end{enumerate}  
+% Set the ending of a LaTeX document
+
+
+
+\underline{Questions from Part 3}
+\begin{enumerate}
+\item What type of test does this most closely align with: Goodness of Fit, Homogeneity, Independence?  \vspace{.55in}
+\item State the set of hypotheses for this test. \vspace{.75in}
+\item What can you conclude from this test? \vspace{0.5in}
+
+\end{enumerate} 
+
+\end{document}
